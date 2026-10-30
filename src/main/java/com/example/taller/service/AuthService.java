@@ -17,9 +17,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    public AuthService(UsuarioRepository usuarioRepository,
-                       PasswordEncoder passwordEncoder,
-                       JwtService jwtService) {
+    public AuthService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
@@ -37,6 +35,7 @@ public class AuthService {
         }
 
         return new AuthResponseDto(
+                usuario.getId(),
                 jwtService.generar(usuario),
                 usuario.getEmail(),
                 usuario.getRol().name());
